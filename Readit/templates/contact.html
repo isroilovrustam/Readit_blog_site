@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+    {% for home in homes %}
+        <div class="hero-wrap js-fullheight" style="background-image: url({{ home.image.url }});"
+             data-stellar-background-ratio="0.5">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start"
+                     data-scrollax-parent="true">
+                    <div class="col-md-12 ftco-animate text-center">
+                        <h1 class="mb-4 mb-md-0">{{ home.title }}</h1>
+                        <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i
+                                class="ion-ios-arrow-forward"></i></a></span> <span><a href="/article/">Article <i
+                                class="ion-ios-arrow-forward"></i></a></span></span> <span><a href="/about/">About<i
+                                class="ion-ios-arrow-forward"></i></a></span></span> <span><a href="/contact/">Contact<i
+                                class="ion-ios-arrow-forward"></i></a></span>
+                        </p>
+                        <a href="#" class="mouse-icon">
+                            <div class="mouse-wheel"><span class="ion-ios-arrow-round-down"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    {% endfor %}
+    <section class="ftco-section contact-section">
+        <div class="container">
+            <div class="row d-flex mb-5 contact-info">
+                <div class="col-md-12 mb-4">
+                    <h2 class="h3">Contact Information</h2>
+                </div>
+                <div class="w-100"></div>
+                {% for contactme in contactmes %}
+
+                <div class="col-md-3">
+                    <p><span>{{ contactme.name }}</span><br><a href="/">{{ contactme.text }}</a></p>
+                </div>
+
+                {% endfor %}
+            </div>
+            <div class="row block-9 no-gutters">
+                <form method="post" action="#" class="bg-light p-4 p-md-5 contact-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        {{ form.name }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.phone }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        {{ form.message }}
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
